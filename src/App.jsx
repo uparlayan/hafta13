@@ -1,29 +1,17 @@
 import React, { useReducer } from "react";
-
-const initialState = { count: 0 };
-
-function reducer(state, action) {
-  switch (action.type) {
-    case "increment":
-      return { count: state.count + 1 };
-    case "decrement":
-      return { count: state.count - 1 };
-    case "reset":
-      return initialState;
-    default:
-      throw new Error();
-  }
-}
+import { ilkDurum, reducer } from "./reducers/sayacReducer";
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [durum, vekilFonksiyon] = useReducer(reducer, ilkDurum);
+
+  console.log(durum.sayi);
 
   return (
     <>
-      Count: {state.count}
-      <button onClick={() => dispatch({ type: "increment" })}>+</button>
-      <button onClick={() => dispatch({ type: "decrement" })}>-</button>
-      <button onClick={() => dispatch({ type: "reset" })}>Reset</button>
+      Count: {durum.sayi}
+      <button onClick={() => vekilFonksiyon({ type: "increment" })}>+</button>
+      <button onClick={() => vekilFonksiyon({ type: "decrement" })}>-</button>
+      <button onClick={() => vekilFonksiyon({ type: "reset" })}>Reset</button>
     </>
   );
 }
